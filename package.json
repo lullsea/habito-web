@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxt/eslint": "^1.10.0",
     "@nuxt/ui": "^4.1.0",
+    "date-fns": "^4.1.0",
     "eslint": "^9.39.0",
     "nuxt": "^4.2.0",
     "typescript": "^5.9.3",

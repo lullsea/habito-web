@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+button,
+[role="button"]{
+    cursor: pointer;
+}
+
+:disabled {
+    cursor: default;
+}
+
