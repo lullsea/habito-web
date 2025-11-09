@@ -7,7 +7,7 @@ const props = defineProps<{
 }>();
 
 // Default to 20 weeks if not provided
-const weeks = computed(() => props.weeks || 20);
+const weeks = computed(() => props.weeks || 32);
 
 // Generate the last X weeks of dates
 function generateDates(weeks: number) {
@@ -42,7 +42,7 @@ function getColor(count: number) {
 </script>
 
 <template>
-    <UCard variant="outline" class="w-fit mx-auto my-4">
+    <UCard variant="outline" class="w-full flex justify-center my-4">
         <h1 class="text-xl">
             Activity Grid
         </h1>
@@ -63,7 +63,7 @@ function getColor(count: number) {
                 >
                     <div
                         :class="[
-                            'w-10 h-10 rounded-sm transition-all duration-200 hover:scale-110',
+                            'w-8 h-8 rounded-sm transition-all duration-200 hover:scale-110',
                             getColor(day.count),
                         ]"
                     />

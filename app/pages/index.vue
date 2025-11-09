@@ -1,4 +1,11 @@
 <script setup>
+import axios from "axios";
+import useAuth from "~/composables/useAuth";
+
+const config = useRuntimeConfig();
+const { $axios } = useNuxtApp();
+const { login, fetchUser, register, logout, user} = useAuth();
+
 const sampleData = {
     "2025-08-28": 2,
     "2025-08-30": 3,
@@ -37,9 +44,33 @@ const sampleData = {
     "2025-11-04": 1,
     "2025-11-05": 2,
 };
+
+onMounted(async () => {
+    await fetchUser();
+    console.log("user", user);
+});
+
+const handleLogin = async () => {
+    const {data} = await $axios.get('http://localhost:8000/api/inspire')
+    console.log('inspire', data);
+};
+
 </script>
 
 <template>
-    <StatisticsActivityGrid :data="sampleData" />
-    <Timer />
+    <div
+        class="flex flex-col justify-center gap-4 max-w-[80vw] mx-auto"
+    >
+        <StatisticsActivityGrid :data="sampleData" />
+        <div class="flex justify-center gap-10 flex-wrap">
+            <div>
+                <div v-for="(value, key) in user" :key="key">
+                    {{ key }}: {{ value }}
+                </div>
+            </div>
+            <Timer />
+            <TodoList />
+        </div>
+    </div>
+    <UButton @click.prevent="handleLogin"> login </UButton>
 </template>
